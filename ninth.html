@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback</title>
+    <style>
+        
+        body, h1, h2, h3, p {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+       
+        html, body {
+            height: 120%;
+        }
+
+        /* Set a colorful background image */
+        body {
+            background-image: url('https://cdn.pixabay.com/photo/2015/06/22/08/37/children-817365_1280.jpg'); /* Add your image path here  if you want another image*/
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center center;
+            color: #FF1493; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 20px;
+            color: #FFFF00;
+            background-color:#FF1493;
+        }
+
+      
+        h2 {
+            font-size: 24px;
+            color: #00BFFF; /* Deep Sky Blue */
+            text-transform: uppercase;
+            margin: 20px 0;
+        }
+
+       
+        section {
+            border: 2px dashed #FF4500; /* Orange Red */
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #FF69B4; /* Hot Pink */
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            text-transform: uppercase;
+            margin: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #FF1493; /* Deep Pink */
+        }
+
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .bounce {
+            animation: bounce 0.5s infinite;
+        }
+
+       
+        ul {
+            list-style: none;
+        }
+
+        li {
+            font-size: 20px;
+            color: #228B22; /* Forest Green */
+            margin: 10px 0;
+        }
+
+       
+        a {
+            color: #800080; /* Purple */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #4B0082; /* Indigo */
+        }
+
+
+        form {
+            background-color: rgba(255, 255, 255, 0.7); 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .stars {
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        .star {
+            font-size: 36px;
+            cursor: pointer;
+            color: gray;
+            transition: color 0.3s ease;
+        }
+
+        .star:hover {
+            color: #FFD700; /* Gold */
+        }
+
+       
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 50%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 2px solid #FF69B4; /* Hot Pink */
+            border-radius: 5px;
+            font-size: 16px;
+            color: #FF1493; /* Deep Pink */
+            background-color: #FFE4E1; /* Misty Rose */
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: #FF1493; /* Deep Pink */
+        }
+        #background-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+  #backtomenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 9999; 
+}
+
+#backtomenu img 
+{
+    width: 50px; 
+    height: auto; 
+}
+    </style>
+</head>
+<body>
+    <a href="EmpowerKids.html" id="backtomenu">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL8MMn4xDgOLYjIudihNxKQNCzRERkfQthV9FHKiSDIbbThZnGCuE9My1FgzZvU2W5FKc&usqp=CAU" 
+        alt="Back to Menu">
+    </a>
+    <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
+        <source src="C:\Users\fazli\eclipse-workspace\JavaProgram\src\Mypackage\MenuVideo.mp4" type="video/mp4">
+    </video>
+    <h1>Kindly give us Feedback </h1>
+    <form id="feedbackForm">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" required><br><br>
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" required><br><br>
+
+       
+
+        <label for="satisfaction">Overall Satisfaction:</label><br>
+        <div class="stars" id="starRating">
+            <span class="star" onclick="rate(1)">&#9733;</span>
+            <span class="star" onclick="rate(2)">&#9733;</span>
+            <span class="star" onclick="rate(3)">&#9733;</span>
+            <span class="star" onclick="rate(4)">&#9733;</span>
+            <span class="star" onclick="rate(5)">&#9733;</span>
+        </div><br><br>
+
+        <label for="specificFeedback">Specific Feedback:</label><br>
+        <textarea id="specificFeedback" rows="4" cols="50"></textarea><br><br>
+
+        <label for="suggestions">Suggestions for Improvement:</label><br>
+        <textarea id="suggestions" rows="4" cols="50"></textarea><br><br>
+
+        <label>Would you recommend us to others?</label><br>
+        <input type="radio" name="recommend" value="Yes" required> Yes<br>
+        <input type="radio" name="recommend" value="No" required> No<br>
+        <input type="radio" name="recommend" value="Maybe" required> Maybe<br><br>
+
+        <label for="additionalComments">Additional Comments:</label><br>
+        <textarea id="additionalComments" rows="4" cols="50"></textarea><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function rate(stars) {
+            const starElements = document.querySelectorAll('.star');
+            starElements.forEach((star, index) => {
+                if (index < stars) {
+                    star.style.color = 'gold';
+                } else {
+                    star.style.color = 'gray';
+                }
+            });
+        }
+
+        document.querySelector('input[name="feedbackType"][value="Other"]').addEventListener('change', function () {
+            document.getElementById('otherFeedbackType').disabled = !this.checked;
+        });
+
+        document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            // You can collect form data and submit it to a server here.
+            alert('Feedback submitted! Thank you for your input.');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport"
+        content="width=device-width,initial-scale=1.0" />
+        <title>Match Rights </title>
+        <style>
+            * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+    overflow: hidden;
+}
+#background-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+  .video-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#backtomenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 9999; 
+}
+
+#backtomenu img 
+{
+    width: 50px; 
+    height: auto; 
+}
+
+  body {
+    background-color: aquamarine;
+  }
+  .container {
+    width: 90%;
+    max-width: 37.5em;
+    background-color: #ffffff;
+    padding: 3em 0.5em;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 0.8em;
+  }
+  h3 {
+    text-align: center;
+    width: 60%;
+    margin: 0 auto 2em auto;
+    font-size: 1.2em;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    line-height: 1.8em;
+    color: #010c39;
+  }
+  .draggable-objects,
+  .drop-points {
+    display: flex;
+    justify-content: space-around;
+    padding: 2em;
+  }
+  .draggable-image {
+    width: 8em;
+    cursor: move;
+  }
+  img {
+    width: 8em;
+    filter: drop-shadow(0 0.3em 0.9em rgba(0, 0, 0, 0.25));
+  }
+  .countries {
+    width: 10em;
+    height: 8em;
+    display: grid;
+    place-items: center;
+    border: 0.25em dashed #010c39;
+    border-radius: 0.8em;
+  }
+  .dropped {
+    padding: 0;
+    background-color: #e5ffc8;
+  }
+  .controls-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-image:radial-gradient(rgb(78, 172, 227),lightgreen,pink,yellow);
+    flex-direction: column;
+    top: 0;
+  }
+  .controls-container button {
+    font-size: 1.12em;
+    padding: 0.8em 1em;
+    border-radius: 0.2em;
+    border: none;
+    outline: none;
+    color: #010c39;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+  }
+  .controls-container p {
+    color: #ffffff;
+    font-size: 2em;
+    margin-bottom: 1em;
+  }
+  .hide {
+    display: none;
+  }
+  #result {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    color: goldenrod;
+    
+}
+
+        </style>
+    </head>
+    <body>
+        <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
+            <source src="C:\Users\fazli\eclipse-workspace\JavaProgram\src\Mypackage\MenuVideo.mp4" type="video/mp4">
+        </video>
+        <a href="EmpowerKids.html" id="backtomenu">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL8MMn4xDgOLYjIudihNxKQNCzRERkfQthV9FHKiSDIbbThZnGCuE9My1FgzZvU2W5FKc&usqp=CAU" 
+            alt="Back to Menu">
+        </a>
+        <div class="container">
+            <h3>Drag & Drop The Images over their respective Rights</h3>
+            <div class="draggable-objects"></div>
+            <div class="drop-points"></div>
+        </div>
+       <div class="controls-container">
+        <p id="result"></p>
+        <p id="result1"></p>
+          
+        <button id="start">Start Game</button>
+       </div>
+       <script>
+        let draggableObjects;
+let drropPoints;
+const startButton =document.getElementById("start");
+const result =document.getElementById("result");
+const controls=document.querySelector(".controls-container");
+const dragContainer=document.querySelector(".draggable-objects");
+const dropContainer=document.querySelector(".drop-points");
+const data=[
+"Right to Health", 
+"Right to Protection",
+"Right to Education" ,
+"Right to Play",
+"Right to Identify" ,
+"Right to Nutrition" 
+];
+
+let deviceType=""
+let initialX=0,initialY=0;
+let currentElement="";
+let moveElement=false;
+
+//detect touch decive
+const isTouchDevice=()=>{
+    try{
+        //crte tch evnt 
+        document.createEvent("TouchEvent");
+        deviceType="touch";
+        return true;
+    }
+    catch(e)
+    {
+        deviceType ="mouse";
+        return false;
+    }
+};
+let count=0;
+ 
+const randomValueGenerator =()=>{
+    return data[Math.floor(Math.random()*data.length)]
+}
+//console.log(randomValueGenerator());
+const stopGame =()=>{
+    controls.classList.remove("hide");
+    startButton.classList.remove("hide");
+};
+
+//drag and drop func
+function dragStart(e){
+    if(isTouchDevice()){
+        initialX=e.touches[0].clientX;
+        initialY=e.touches[0].clientY;
+
+        //start tch mov
+        moveElement=true;
+        currentElement=e.target;
+
+    }
+    else{
+        //for non tch dev set data
+        e.dataTransfer.setData("text",e.target.id);
+
+    }
+}
+//evnt fired on drp trg
+
+function dragOver(e){
+    e.preventDefault();
+}
+const touchMove=(e)=>{
+    if(moveElement){
+        e.preventDefault();
+        let newX=e.touches[0].clientX;
+        let newY=e.touches[0].clientY;
+        let currentSelectedElement = document.getElementById(e.target.id);
+        currentSelectedElement.parentElement.style.top
+        =currentSelectedElement.parentElement.
+        offsetTop - (initialY-newY)+"px";
+        currentSelectedElement.parentElement.style.left=
+        currentSelectedElement.parentElement.offset -(initialX-newX)+
+        "px";
+        initialX=newX;
+        initialY=newY;
+    }
+};
+const drop=(e)=>{
+    e.preventDefault();
+    //for touch scr
+    if(isTouchDevice())
+    {
+        moveElement=false;
+        //slct cntry nm div using cust attri
+        const currentDrop =document.querySelector(`div
+        [data-id='${e.target.id}']`);
+        //get boundaries of div
+        const currentDropBound =currentDrop.
+        getBoundingClientRect();
+        //if pos of fg ins boud of ctry nm
+        if(
+            initialX >= currentDropBound.left &&
+            initialX <=currentDropBound.right &&
+            initialY >=currentDropBound.top &&
+            initialY <=currentDropBound.bottom
+            )
+        {
+            currentDrop.classList.add("dropped")
+            //hide actual img
+            currentElement.classList.add("hide");
+            currentDrop.innerHTML= ``;
+            //ins new img ele
+            currentDrop.insertAdjacentHTML(
+                "afterbegin",
+                `<img src="{currentElement.id}.jpg"`
+            );
+            count +=1;
+        }
+    }
+    else{
+        //access data
+        const draggedElementData =e.dataTransfer.getData("text");
+        const droppableElementData =e.target.getAttribute("data-id");
+        if(draggedElementData ===droppableElementData){
+            const draggedElement =document.getElementById(draggedElementData);
+            //drped cls
+            e.target.classList.add("dropped");
+            //hid currnt img
+            draggedElement.classList.add("hide");
+            //dragable set to flse
+            draggedElement.setAttribute("draggable","false");
+            e.target.innerHTML=``;
+            //inst new img
+            e.target.insertAdjacentHTML(
+                "afterbegin",
+                `<img src="${draggedElementData}.jpg">`
+                );
+            count+=1;
+        }
+        //Win
+        if(count ==3)
+        {
+            result.innerText =`Great! You Won!`;
+            result1.innerHTML = '<img src="cr.gif" alt="Image description">';
+
+           
+            
+            stopGame();
+        }
+    }
+};
+//crte flgs and contr
+const creator =() => {
+    dragContainer.innerHTML ="";
+    dropContainer.innerHTML ="";
+    let randomData=[];
+    for(let i=1;i<=3;i++){
+        let randomValue =randomValueGenerator();
+        if(!randomData.includes(randomValue)){
+            randomData.push(randomValue);
+        }
+        else{
+            i-=1;
+        }
+    }
+    for (let i of randomData) {
+        const flagDiv = document.createElement("div");
+        flagDiv.classList.add("draggable-image");
+        flagDiv.setAttribute("draggable", true);
+        if (isTouchDevice()) {
+          flagDiv.style.position = "absolute";
+        }
+        flagDiv.innerHTML = `<img src="${i}.jpg" id="${i}">`;
+        dragContainer.appendChild(flagDiv);
+    }
+    randomData = randomData.sort(() => 0.5 - Math.random());
+    for (let i of randomData) {
+      const countryDiv = document.createElement("div");
+      countryDiv.innerHTML = `<div class='countries' data-id='${i}'>
+      ${i.charAt(0).toUpperCase() + i.slice(1).replace("-", " ")}
+      </div>
+      `;
+      dropContainer.appendChild(countryDiv);
+    }
+};
+
+//Start Game
+startButton.addEventListener(
+    "click",
+    (startGame = async () => {
+      currentElement = "";
+      controls.classList.add("hide");
+      startButton.classList.add("hide");
+      //This will wait for creator to create the images and then move forward
+      await creator();
+      count = 0;
+      dropPoints = document.querySelectorAll(".countries");
+      draggableObjects = document.querySelectorAll(".draggable-image");
+      //Events
+      draggableObjects.forEach((element) => {
+        element.addEventListener("dragstart", dragStart);
+        //for touch screen
+        element.addEventListener("touchstart", dragStart);
+        element.addEventListener("touchend", drop);
+        element.addEventListener("touchmove", touchMove);
+      });
+      dropPoints.forEach((element) => {
+        element.addEventListener("dragover", dragOver);
+        element.addEventListener("drop", drop);
+      });
+    })
+  );
+
+       </script>
+    </body>
+</html>

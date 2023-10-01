@@ -1,0 +1,126 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible"content="IE=edge">
+        <meta name="viewport"content="width=device-width,initial-scale=1.0">
+        <style>
+            
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+h2{
+    color:bisque;
+}
+p{
+    color:bisque;
+}
+body {
+   background: #d4bdde;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 100vh;
+
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 200px;
+}
+
+.chart{
+    padding: 2rem;
+    border: 1px solid #f49131;
+    border-radius: 1rem;
+    background: #251c35;
+    box-shadow: 0 0 16px rgba(0,0,0,0.8);
+
+}
+#achievements, #awards {
+    margin-top: 20px;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+li {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+}
+#background-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+  #backtomenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 9999; 
+}
+
+#backtomenu img 
+{
+    width: 50px; 
+    height: auto; 
+}
+        </style>
+        <title>Achievements and Awards</title>
+    </head>
+    <body>
+        <a href="EmpowerKids.html" id="backtomenu">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL8MMn4xDgOLYjIudihNxKQNCzRERkfQthV9FHKiSDIbbThZnGCuE9My1FgzZvU2W5FKc&usqp=CAU" 
+            alt="Back to Menu">
+        </a>
+        <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
+            <source src="C:\Users\fazli\eclipse-workspace\JavaProgram\src\Mypackage\MenuVideo.mp4" type="video/mp4">
+        </video>
+        <main>
+            <section id="user-info">
+                <h2>User Information</h2><br>
+                <p><strong>Username:</strong> <span id="username">AlexMike</span></p><br>
+                <p><strong>Total Points:</strong> <span id="total-points">2160</span></p><br>
+                <hr>
+            </section>
+            <div id="achievements">
+                <h2>Achievements</h2>
+                <ul id="achievement-list">
+                    
+                </ul>
+            </div>
+            <hr>
+            <div id="awards">
+                <h2>Your Awards</h2>
+                <ul id ="award-list">
+                      
+                </ul>
+            </div>
+            <h2>Progress</h2>
+        <div class="container">
+            <div class="chart">
+              <canvas id="barchart" width="300"height="300"></canvas>
+              </div>
+            <div class="chart">
+                <canvas id="doughnut" width="300"height="300"></canvas>
+            </div>
+        </div>
+        <script src="java.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+        <script src="chart1.js"></script>
+        <script src="chart2.js"></script>
+    </body>
+</html>

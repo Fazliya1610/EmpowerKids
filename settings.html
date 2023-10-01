@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings Page for Children</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
+        <source src="C:\Users\fazli\eclipse-workspace\JavaProgram\src\Mypackage\MenuVideo.mp4" type="video/mp4">
+    </video>
+<div class="settings-container">
+<h1>Settings</h1>
+<div class="settings-section">
+<h4>Language Settings</h4>
+<select id="language-select">
+<option value="english">English</option>
+<option value="hindi">Hindi</option>
+<option value="bengali">Bengali</option>
+<option value="tamil">Tamil</option>
+</select>
+</div>
+<div class="settings-section">
+<h4>Profile View</h4>
+<a href="EmpowerKids.html" id="backtomenu">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL8MMn4xDgOLYjIudihNxKQNCzRERkfQthV9FHKiSDIbbThZnGCuE9My1FgzZvU2W5FKc&usqp=CAU" 
+    alt="Back to Menu">
+</a>
+<button id="profile-view-button">Edit Profile</button>
+</div>
+<div class="settings-section">
+<h4>Sound Settings</h4>
+<label for="sound-toggle">Sound On/Off</label>
+<input type="checkbox" id="sound-toggle">
+</div>
+</div>
+<audio id="notification-sound" src="https://commondatastorage.googleapis.com/codeskulptor-demos/pyman_assets/eatedible.ogg"></audio>
+<script src="script.js"></script>
+</body>
+</html>
+

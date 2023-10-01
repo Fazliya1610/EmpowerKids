@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzes and Challenges</title>
+    <style>
+        video {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+    overflow: hidden;
+}
+#background-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+  .video-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#backtomenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 9999; 
+}
+
+#backtomenu img 
+{
+    width: 50px; 
+    height: auto; 
+}
+
+body 
+{
+    font-family: Arial, sans-serif;
+    display:flexbox;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Comic Sans MS', cursive;
+    margin: 0;
+    padding: 0;
+    background: url("C:\Users\fazli\OneDrive\Documents\MenuVideo.mp4");
+    background-size: cover;
+}
+h1
+{
+    display: inline-block; 
+    background-color: aquamarine;
+    font-size: 36px;
+    color: #ff6f61;
+    padding: 10px;
+    text-align: center;
+}
+h2
+{
+    display: inline-block; 
+    background-color: aqua;
+    color: black;
+    padding: 10px;
+    text-align: center;
+}
+h4 {
+    
+    color:bisque;
+    margin-bottom: 10px;
+}
+h3 {
+    
+    color: #fff;
+    margin-bottom: 10px;
+}
+p{
+    color:cornflowerblue;
+    font-weight: bold;
+} 
+        .container {
+            margin: 50px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
+        <source src="C:\Users\fazli\eclipse-workspace\JavaProgram\src\Mypackage\MenuVideo.mp4" type="video/mp4">
+    </video>
+    <a href="EmpowerKids.html" id="backtomenu">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL8MMn4xDgOLYjIudihNxKQNCzRERkfQthV9FHKiSDIbbThZnGCuE9My1FgzZvU2W5FKc&usqp=CAU" 
+        alt="Back to Menu">
+    </a>
+    <center>
+    <div class="container">
+        <h1>Quizzes and Challenges</h1>
+        <p>Choose an option:</p>
+        <button class="btn" id="quizBtn">Image Quiz</button>
+        <button class="btn" id="gameBtn">Play Game</button>
+    </div>
+</center>
+    <script>
+        document.getElementById("quizBtn").addEventListener("click", function() {
+            window.location.href = "imagequiz.html";
+        });
+
+        document.getElementById("gameBtn").addEventListener("click", function() {
+            window.location.href = "matchquiz.html";
+        });
+    </script>
+</body>
+</html>

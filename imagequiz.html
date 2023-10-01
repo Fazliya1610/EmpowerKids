@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chil Rights Quiz</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+.quiz-container {
+    text-align: center;
+    margin: 20px;
+}
+img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    margin: 20px 0;
+}
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.label 
+{
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+.quiz-button 
+{
+    padding: 10px 20px;
+    font-size: 50px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px; /* Add spacing between options and button */
+}
+.score-display 
+{
+    font-size: 20px;
+    margin-top: 20px;
+}
+h1
+{
+    display: inline-block; 
+    background-color: aquamarine;
+    font-size: 36px;
+    color: #ff6f61;
+    padding: 10px;
+    text-align: center;
+}
+h2
+{
+    display: inline-block; 
+    background-color: aqua;
+    color: black;
+    padding: 10px;
+    text-align: center;
+}
+h4 {
+    
+    color:bisque;
+    margin-bottom: 10px;
+}
+h3 {
+    
+    color: #fff;
+    margin-bottom: 10px;
+}
+p{
+    color:cornflowerblue;
+    font-weight: bold;
+} 
+body 
+{
+    font-family: Arial, sans-serif;
+    display:flexbox;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Comic Sans MS', cursive;
+    margin: 0;
+    padding: 0;
+    background: url("C:\Users\fazli\eclipse-workspace\JavaProgram\src\Mypackage\MenuVideo.mp4");
+    background-size: cover;
+}
+video {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+    overflow: hidden;
+}
+#background-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+  .video-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#backtomenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 9999; 
+}
+
+#backtomenu img 
+{
+    width: 50px; 
+    height: auto; 
+}
+
+    </style>
+</head>
+<body>
+    <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
+        <source src="C:\Users\fazli\eclipse-workspace\JavaProgram\src\Mypackage\MenuVideo.mp4" type="video/mp4">
+    </video>
+    <a href="EmpowerKids.html" id="backtomenu">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL8MMn4xDgOLYjIudihNxKQNCzRERkfQthV9FHKiSDIbbThZnGCuE9My1FgzZvU2W5FKc&usqp=CAU" 
+        alt="Back to Menu">
+    </a>
+    <div class="quiz-container">
+        <h1>Child Rights Quiz</h1>
+        <p id="question-text"></p>
+        <img id="quiz-image" src="" alt="Question">
+        <div class="quiz-options" id="options-container">
+        </div>
+        <br>
+        <button class="quiz-button" onclick="checkAnswer()">Next</button>
+        <div class="score-display" id="score-output"></div>
+        </div>
+        <div class="score-display" id="score-output"></div>
+    </div>
+    <script>
+        const questions = [
+    {
+        text: "What are the basic rights that every child is entitled to, as recognized by the United Nations?",
+        image: "https://cdn.leonardo.ai/users/c552c20e-9b5d-4e19-ac3c-93ff66d1785c/generations/e08d5507-c41e-4c6a-8f81-c9a62c35c38b/DreamShaper_v7_Create_an_image_that_lists_the_basic_child_righ_1.jpg",
+        options: [
+            "Food and toys",
+            "Education and healthcare",
+            "Pets and video games",
+            "None of the above"
+        ],
+        correctAnswer: "Education and healthcare"
+    },
+    {
+        text: "Which international organization is responsible for promoting and protecting the rights of children worldwide?",
+        image: "https://w7.pngwing.com/pngs/693/807/png-transparent-unicef-angola-united-nations-logo-unicef-burundi-child-thumbnail.png",
+        options: [
+            "UNICEF",
+            "WHO",
+            "Greenpeace",
+            "Red Cross"
+        ],
+        correctAnswer: "UNICEF"
+    },
+    {
+        text: "Child labor is a violation of child rights.",
+        image: "https://cdn.leonardo.ai/users/c552c20e-9b5d-4e19-ac3c-93ff66d1785c/generations/889ac379-eb22-4726-858b-826044efa04f/DreamShaper_v7_Develop_an_image_with_a_large_True_on_one_side_2.jpg?w=512",
+        options: [
+            "True",
+            "False",
+            "May be",
+            "I don't Know"
+        ],
+        correctAnswer: "True"
+    },
+    {
+        text: "What is the right of children to express their thoughts, opinions, and ideas called?",
+        image: "https://cdn.leonardo.ai/users/c552c20e-9b5d-4e19-ac3c-93ff66d1785c/generations/eb21d499-ce04-44bc-87f6-3b0e7c196b50/DreamShaper_v7_Design_a_colorful_image_that_illustrates_the_co_0.jpg",
+        options: [
+            "Right to silence",
+            "Right to education",
+            "Right to freedom of expression",
+            "Right to play",
+        ],
+        correctAnswer: "Right to freedom of expression"
+    },
+    {
+        text: "Which right ensures that every child has the right to a name and nationality?",
+        image: "https://cdn.leonardo.ai/users/c552c20e-9b5d-4e19-ac3c-93ff66d1785c/generations/f43c3e9e-88de-420c-96c9-22cae6b449cb/DreamShaper_v7_Create_an_image_that_emphasizes_the_Right_to_Id_2.jpg?w=512",
+        options: [
+            "Right to education",
+            "Right to play",
+            "Right to identity",
+            "Right to privacy"
+        ],
+        correctAnswer: "Right to identity"
+    },
+    {
+        text: "What is the minimum age at which a child is generally considered legally competent to make certain decisions?",
+        image: "https://cdn.leonardo.ai/users/c6e29cef-7735-4e25-839f-ff27c00ff5b8/generations/95d8c47a-8959-4367-9ddd-d8d95267b2cc/DreamShaper_v7_Design_an_image_illustrating_the_concept_of_the_1.jpg?w=512",
+        options: [
+            "12 years old",
+            "16 years old",
+            "18 years old",
+            "21 years old"
+        ],
+        correctAnswer: "18 years old"
+    },
+    {
+        text: "What does CRC stand for in the context of child rights?",
+        image: "https://cdn.leonardo.ai/users/c552c20e-9b5d-4e19-ac3c-93ff66d1785c/generations/ecad80ad-497d-4b3c-83c6-acc698455945/DreamShaper_v7_Design_an_image_featuring_the_acronym_CRC_promi_0.jpg",
+        options: [
+            "Child rights convention",
+            "Children's Rights Council",
+            "Child Responsibilty code",
+            "child rights charter"
+        ],
+        correctAnswer: "Child rights convention"
+    },
+    {
+        text: "Which right ensures that children should be protected from all forms of violence, abuse, neglect, or exploitation?",
+        image: "https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_768/https://www.anthromania.com/wp-content/uploads/2022/07/Child-Rights-and-Protection-768x432.jpg",
+        options: [
+            "Right to food",
+            "Right to privacy",
+            "Right to play",
+            "Right to protection"
+        ],
+        correctAnswer:"Right to protection"
+    },
+    {
+        text: "In the context of child rights, what does non-discrimination mean?",
+        image: "https://cdn.leonardo.ai/users/c552c20e-9b5d-4e19-ac3c-93ff66d1785c/generations/ce64a740-fda7-4feb-b44c-ca0b22baab50/DreamShaper_v7_Develop_an_image_that_represents_nondiscriminat_2.jpg",
+        options: [
+            "Treating all children the same, regardless of their circumstances",
+            "Giving preference to certain children based on their background",
+            "Ignoring the rights of some children",
+            "None of the above"
+        ],
+        correctAnswer:"Treating all children the same, regardless of their circumstances"
+    },
+    {
+        text: "Which right guarantees that every child has the right to rest, leisure, and participation in cultural and artistic activities?",
+        image: "https://cdn.leonardo.ai/users/c552c20e-9b5d-4e19-ac3c-93ff66d1785c/generations/80c2759e-c7f9-4531-b8a1-8fa80e89dbbe/DreamShaper_v7_Design_an_image_that_symbolizes_the_Right_to_Pl_0.jpg",
+        options: [
+            "Right to education",
+            "Right to play",
+            "Right to work",
+            "Right to travel"
+        ],
+        correctAnswer: "Right to play"
+    }
+];
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+function loadQuestion() {
+    const currentQuestion = questions[currentQuestionIndex];
+    const quizImage = document.getElementById("quiz-image");
+    const optionsContainer = document.getElementById("options-container");
+    const questionText = document.getElementById("question-text");
+
+    quizImage.src = currentQuestion.image;
+    questionText.textContent = currentQuestion.text; // Add this line to display the question text
+
+    optionsContainer.innerHTML = "";
+
+    currentQuestion.options.forEach((option, index) => {
+        const label = document.createElement("label");
+        label.innerHTML = `<input type="radio" name="option" value="${option}"> ${option}<br>`;
+        optionsContainer.appendChild(label);
+    });
+
+    const selectedOption = document.querySelector('input[name="option"]:checked');
+    if (selectedOption) {
+        selectedOption.checked = false;
+    }
+}
+
+function checkAnswer() {
+    const selectedOption = document.querySelector('input[name="option"]:checked');
+    if (selectedOption) {
+        const userAnswer = selectedOption.value;
+        const correctAnswer = questions[currentQuestionIndex].correctAnswer;
+        if (userAnswer === correctAnswer) {
+            score++;
+        }
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            loadQuestion();
+        } else {
+            openNewPage(score, questions.length);
+        }
+    } else {
+        alert("Please select an option.");
+    }
+}
+
+function openNewPage(score, totalQuestions) {
+    const newPage = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Quiz Score</title>
+        </head>
+        <body>
+            <h1>Quiz Completed</h1>
+            <p>Your score is: ${score} out of ${totalQuestions}</p>
+        </body>
+        </html>
+    `;
+
+    const blob = new Blob([newPage], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+
+    window.open(url, "_blank");
+
+    URL.revokeObjectURL(url);
+}
+
+window.onload = loadQuestion;
+    </script>
+</body>
+</html>
